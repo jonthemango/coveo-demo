@@ -1,0 +1,9 @@
+.search-panel{
+    width: 30%;
+    display: 'block';
+    float: 'left';
+}
+
+.results-panel{
+    width: 70%;
+}
