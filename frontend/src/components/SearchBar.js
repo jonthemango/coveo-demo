@@ -63,7 +63,10 @@ export function SearchBar(props){
             <InputBase
               placeholder="Search..."
               onChange={event => setSearchBar(event.target.value)}
-              onKeyPress={event => {if (event.key === "Enter") props.setSearchParams({q: searchBar, aq: "@tpcouleur==Blanc", enableDidYouMean: true, numberOfResults:30})}}
+              onKeyPress={event => {if (event.key === "Enter") {
+                props.setSearchParams({q: searchBar, aq: "@tpcouleur==Blanc", enableDidYouMean: true, numberOfResults:30})
+                props.setPage(0)
+              }}}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
