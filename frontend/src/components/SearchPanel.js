@@ -3,6 +3,15 @@ import {AppBar, InputBase, Toolbar, Typography, Button, Card, Slider,CardContent
 import SearchIcon from '@material-ui/icons/Search';
 import JSONPretty from 'react-json-pretty';
 
+
+const fields = {
+    "tpcategorie": [],
+    "tppays": [],
+    "tpregion":[],
+    "tpmillesime":[],
+}
+
+
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
@@ -12,20 +21,20 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
     }, 
     card: {
+    },
+    title: {
+        marginTop: "1em",
     }
 }));
 
-function priceText(value) {
-    return `$ ${value}`;
-}
+
 
 export function SearchPanel(props){
     const classes = useStyles();
 
     let [enSpecial, setEnSpecial] = useState(false)
-    let [price, setPrice] = useState(0);
 
-    const state = { enSpecial , price }
+    const state = { enSpecial }
 
 
     return <div className={classes.root}>
@@ -36,12 +45,7 @@ export function SearchPanel(props){
                     label="En Spécial"/>
 
                 <Divider/>
-                <FormControlLabel
-                    control={<Checkbox checked={true} onChange={_ => setEnSpecial(!enSpecial)} value={enSpecial} checked={enSpecial} />}
-                    label="En Spécial"/>
-                <FormControlLabel
-                    control={<Checkbox checked={true} onChange={_ => setEnSpecial(!enSpecial)} value={enSpecial} checked={enSpecial} />}
-                    label="En Spécial"/>
+                <Typography className={classes.title}>Catégories</Typography>
                 
                 <JSONPretty data={state}/>
                 </CardContent>

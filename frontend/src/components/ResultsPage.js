@@ -1,6 +1,6 @@
 import React from 'react'
 import {Result} from './Result';
-import {Grid, makeStyles} from '@material-ui/core'
+import {Grid, makeStyles, CardContent, Card, CircularProgress, Button, ButtonGroup} from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -20,6 +20,9 @@ const useStyles = makeStyles(theme => ({
     results: {
         display: "flex",
         flexWrap: "wrap"
+    },
+    page: {
+      width: "5em"
     }
   }));
   
@@ -27,11 +30,28 @@ export function ResultsPage(props){
     const classes = useStyles();
     return <div className={classes.root} >
            <Grid container spacing={3}>
-           <Grid item xs={12} className={classes.results}>
+             <Grid item xs={12}>
+               <Card>
+                 <CardContent>
+                  <ButtonGroup color="secondary" aria-label="outlined primary button group">
+                    {props.page ? <Button onClick={_ => props.setPage(props.page-1)}>Prev</Button> : null}
+                    <Button disabled>{props.page+1}</Button>
+                    <Button onClick={_ => props.setPage(1+props.page)}>{props.page+2}</Button>
+                    <Button onClick={_ => props.setPage(2+props.page)}>{props.page+3}</Button>
+                    <Button onClick={_ => props.setPage(3+props.page)}>{props.page+4}</Button>
+                    <Button onClick={_ => props.setPage(4+props.page)}>{props.page+5}</Button>
+                    <Button onClick={_ => props.setPage(1+props.page)}>Next</Button>
+                  </ButtonGroup>
+                 </CardContent>
+               </Card>
+             </Grid>
+           {!props.loading ? <Grid item xs={12} className={classes.results}>
                 {props.results.map(result => {
                         return <Result key={result.uniqueId} result={result}/>
                 })}
-            </Grid>
+            </Grid> :
+            <div style={{width: "100%", display: "flex", justifyContent: "center", marginTop: "10em"}}><CircularProgress  color="secondary" /></div>
+              }
             </Grid>
         </div>       
 }

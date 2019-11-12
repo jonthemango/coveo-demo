@@ -6,7 +6,7 @@ const axios = require("axios")
 export async function Search(params){
     params.access_token = token;
     const results = await axios({
-      method: "post",
+      method: "get",
       baseURL,
       params,
       responseType: "json"

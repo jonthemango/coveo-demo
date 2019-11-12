@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import { Card, CardContent, Typography, makeStyles, CardActionArea, CardMedia, Button, CardActions, Chip } from '@material-ui/core'
+import React from 'react'
+import { Card, CardContent, Typography, makeStyles, CardMedia, CardActions, Chip } from '@material-ui/core'
 import LocalBarIcon from '@material-ui/icons/LocalBar';
 
 const useStyles = makeStyles({
