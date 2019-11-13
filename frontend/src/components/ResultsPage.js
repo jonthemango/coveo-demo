@@ -53,7 +53,7 @@ export function ResultsPage(props){
              </Grid>
            {!props.loading ? <Grid item xs={12} className={classes.results}>
                 {props.results.map(result => {
-                        return <Result key={result.uniqueId} result={result}/>
+                        return <Result className="coveo-results" key={result.uniqueId} result={result}/>
                 })}
             </Grid> :
             <div style={{width: "100%", display: "flex", justifyContent: "center", marginTop: "10em"}}><CircularProgress  color="secondary" /></div>

@@ -1,15 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import {AppBar, InputBase, Toolbar, Typography, Button, Card, Slider,CardContent, Paper, Divider, FormControlLabel, Checkbox, makeStyles} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import {FilterCheckbox} from './filtering/FilterCheckbox';
 import JSONPretty from 'react-json-pretty';
 
 
-const fields = {
-    "tpcategorie": [],
-    "tppays": [],
-    "tpregion":[],
-    "tpmillesime":[],
-}
 
 
 const useStyles = makeStyles(theme => ({
@@ -41,12 +36,12 @@ export function SearchPanel(props){
             <Card className={classes.card}>
                 <CardContent>
                 <FormControlLabel
-                    control={<Checkbox checked={true} onChange={_ => setEnSpecial(!enSpecial)} value={enSpecial} checked={enSpecial} />}
+                    control={<Checkbox onChange={_ => setEnSpecial(!enSpecial)} value={enSpecial} checked={enSpecial} />}
                     label="En Spécial"/>
 
                 <Divider/>
                 <Typography className={classes.title}>Catégories</Typography>
-                
+                <FilterCheckbox label="Catégories" filter="tpcategorie" />
                 <JSONPretty data={state}/>
                 </CardContent>
             </Card>

@@ -45,7 +45,7 @@ function App() {
   }
 
   return (
-    <Grid container>
+    <Grid container className="coveo-app">
       <SearchBar setPage={setPage} setSearchParams={setSearchParams} />
       
       <Grid item xs={3}>

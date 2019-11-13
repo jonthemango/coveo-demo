@@ -39,7 +39,7 @@ export function Result(props){
     const classes = useStyles();
     return <Card className={classes.card}>
             <CardContent>
-      <a target="_blank" className={classes.anchor} href={props.result.ClickUri} ><CardMedia
+      <a className={classes.anchor} href={props.result.ClickUri} ><CardMedia
         component="img"
         className={classes.media}
         image={props.result.raw.tpthumbnailuri}
