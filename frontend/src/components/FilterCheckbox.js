@@ -26,11 +26,6 @@ export function FilterCheckbox(props){
     }
 
     return <>
-                <Button onClick={_ => {
-                    Search({aq: `@tpcategorie==("Vin rouge","Vin blanc")"`}).then(res => {
-                        console.log(res)
-                    })
-                }}>Click</Button>
             <Typography className={classes.title}>{props.label}</Typography>
             {
                 props.facetList.map((facet, index) => { // filterItem is the string values in the filters arrays
