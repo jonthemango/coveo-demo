@@ -4,7 +4,7 @@ const puppeteer = require('puppeteer');
 describe('App', () => {
     test('app loads correctly', async () => {
       let browser = await puppeteer.launch({
-        headless: false
+        headless: true
       });
 
       const page = await browser.newPage();
@@ -22,9 +22,6 @@ describe('App', () => {
   
       const html = await page.$eval('.coveo-app', e => e.innerHTML);
       expect(html).toContain("SAQ");
-      
-      //const results = await page.$eval('.coveo-results', e => e.childNodes);
-      //expect(results.length).toBeGreaterThan(0);
 
       browser.close();
     }, 16000);

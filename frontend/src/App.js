@@ -10,7 +10,7 @@ import './App.css';
 function App() {
 
   let [results, setResults] = useState([])
-  let [searchParams, setSearchParams] = useState({numberOfResults: 30, firstIndex: 0})
+  let [searchParams, setSearchParams] = useState({numberOfResults: 30, firstResult: 0, enableDidYouMean: true})
   let [queryCorrections, setQueryCorrections] = useState([]);
   let [loading, setLoading] = useState(false);
   let [page, setPage] = useState(0);
@@ -35,23 +35,24 @@ function App() {
     })
   },[searchParams])
 
+
+
   const query = () => {
-    console.log(page)
-    setSearchParams({
-      numberOfResults: 30,
-      firstIndex: page,
-      q: searchParams.q
+    setSearchParams(s => {
+      s.firstResult = page
+      return {...s}
     })
   }
 
   return (
     <Grid container className="coveo-app">
-      <SearchBar setPage={setPage} setSearchParams={setSearchParams} />
+      <SearchBar setPage={setPage} setSearchParams={setSearchParams} /> 
       
       <Grid item xs={3}>
         <SearchPanel/>
       </Grid>
 
+     
       <Grid item xs={9}>
         <ResultsPage results={results} setSearchParams={setSearchParams} page={page} setPage={setPage} query={query} loading={loading} /> 
         { queryCorrections.length > 0 ?

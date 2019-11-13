@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import {AppBar, InputBase, Toolbar, Typography, Button, Drawer, List, ListItem, Divider, ListItemIcon, ListItemText, makeStyles} from '@material-ui/core';
+import React, {useState} from 'react'
+import {AppBar, InputBase, Toolbar, Typography, makeStyles} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles(theme => ({
@@ -24,7 +24,6 @@ const useStyles = makeStyles(theme => ({
           opacity: .9,
         },
         marginRight: theme.spacing(2),
-        marginLeft: 0,
       },
     searchIcon: {
         width: theme.spacing(6),
@@ -42,6 +41,10 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(1, 1, 1, 7),
         transition: theme.transitions.create('width'),  
       },
+      anchor: {
+        textDecoration: "none",
+        color: "inherit",
+      }
   }));
 
 export function SearchBar(props){
@@ -53,7 +56,7 @@ export function SearchBar(props){
         <Toolbar>
           <div className={classes.toolbar} />
           <Typography className={classes.title} variant="h6" noWrap>
-            SAQ
+            <a className={classes.anchor} href="/">SAQ</a>
           </Typography>
 
           <div className={classes.search}>
@@ -64,7 +67,10 @@ export function SearchBar(props){
               placeholder="Search..."
               onChange={event => setSearchBar(event.target.value)}
               onKeyPress={event => {if (event.key === "Enter") {
-                props.setSearchParams({q: searchBar, aq: "@tpcouleur==Blanc", enableDidYouMean: true, numberOfResults:30})
+                props.setSearchParams(s => {
+                  s.q = searchBar
+                  return {...s};
+                })
                 props.setPage(0)
               }}}
               classes={{

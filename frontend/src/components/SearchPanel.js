@@ -1,11 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import {AppBar, InputBase, Toolbar, Typography, Button, Card, Slider,CardContent, Paper, Divider, FormControlLabel, Checkbox, makeStyles} from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
-import {FilterCheckbox} from './filtering/FilterCheckbox';
-import JSONPretty from 'react-json-pretty';
-
-
-
+import {Card, CardContent, makeStyles} from '@material-ui/core';
+import {FilterCheckbox} from './FilterCheckbox';
+import {Search} from '../algorithms/api';
+import {filters} from '../algorithms/filters';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -26,23 +23,36 @@ const useStyles = makeStyles(theme => ({
 
 export function SearchPanel(props){
     const classes = useStyles();
+    let [facets, setFacets] = useState([]);
 
-    let [enSpecial, setEnSpecial] = useState(false)
+    useEffect(()=>{
+        /**
+         * Gets the facets dynamically for the side panel
+         * using the "filters" constant which maps all the filters we want to their
+         * nice nices for display purposes.
+         */
+        let groupBy = Object.keys(filters).map(field =>{
+            return {field: `@${field}`}
+        })
+        let obj = {
+            groupBy,
+        }
+        Search(obj).then(res => {
+            console.log(res.data.groupByResults)
+            setFacets(res.data.groupByResults)
+        })
+    },[]) // [] means "do Once"
 
-    const state = { enSpecial }
-
+    
 
     return <div className={classes.root}>
             <Card className={classes.card}>
                 <CardContent>
-                <FormControlLabel
-                    control={<Checkbox onChange={_ => setEnSpecial(!enSpecial)} value={enSpecial} checked={enSpecial} />}
-                    label="En Spécial"/>
-
-                <Divider/>
-                <Typography className={classes.title}>Catégories</Typography>
-                <FilterCheckbox label="Catégories" filter="tpcategorie" />
-                <JSONPretty data={state}/>
+                {
+                    facets.map(facet => {
+                        return <FilterCheckbox key={facet.field} label={filters[facet.field]} facetType={facet.field} facetList={facet.values} />
+                    })
+                }
                 </CardContent>
             </Card>
         </div>

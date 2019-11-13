@@ -23,6 +23,9 @@ const useStyles = makeStyles(theme => ({
     },
     page: {
       width: "5em"
+    },
+    bold: {
+      fontWeight: "bold",
     }
   }));
   
@@ -40,8 +43,8 @@ export function ResultsPage(props){
                <Card>
                  <CardContent>
                   <ButtonGroup color="secondary" aria-label="outlined primary button group">
-                    {props.page ? <Button onClick={_ => props.setPage(props.page-1)}>Prev</Button> : null}
-                    <Button disabled>{props.page+1}</Button>
+                    {props.page ? <Button onClick={_ => setPage(props.page-1)}>Prev</Button> : null}
+                    <Button className={classes.bold}>{props.page+1}</Button>
                     <Button onClick={_ => setPage(1+props.page)}>{props.page+2}</Button>
                     <Button onClick={_ => setPage(2+props.page)}>{props.page+3}</Button>
                     <Button onClick={_ => setPage(3+props.page)}>{props.page+4}</Button>
