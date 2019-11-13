@@ -1,6 +1,10 @@
 ## Description
 Hi! This is my work for the Coveo Frontend demo. It's a search interface for the SAQ.
 
+## Demo
+Check out this link to view the demo:
+demo-cov.us-west-2.elasticbeanstalk.com
+
 ## Set up 
 Since this is a react app, installing it is quite simple.
 ```
@@ -21,5 +25,3 @@ npm run test
 - [x] Paging
 - [ ] Category facets (frontend components there but not fully integrated)
 
-## Demo
-Check out this link to view the demo:
