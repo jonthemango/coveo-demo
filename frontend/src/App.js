@@ -7,6 +7,12 @@ import {Search} from './algorithms/api';
 import {Grid} from '@material-ui/core';
 import './App.css';
 
+/**
+ * This component is the head component
+ * It mounts the SearchBar, SearchPanel and ResultsPage
+ * It begins by making a query for 30 results (first page) and loads those results ontop the page.
+ * Everytime searchParams is updated, the API is requeried.
+ */
 function App() {
 
   let [results, setResults] = useState([])

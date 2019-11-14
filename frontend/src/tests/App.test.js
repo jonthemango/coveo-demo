@@ -21,7 +21,10 @@ describe('App', () => {
       await page.waitForSelector('.coveo-app');
   
       const html = await page.$eval('.coveo-app', e => e.innerHTML);
+      const content = await page.content();
+      console.log(content)
       expect(html).toContain("SAQ");
+      
 
       browser.close();
     }, 16000);

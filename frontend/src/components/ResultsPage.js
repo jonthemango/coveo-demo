@@ -29,10 +29,17 @@ const useStyles = makeStyles(theme => ({
     }
   }));
   
+/**
+ * This component is in charge of displaying a list of results passed as props.
+ * It also displays the current page number and when that page number is re-set 
+ * queries the api through props.query.
+ * @param {page, results, query, setPage} props 
+ */
 export function ResultsPage(props){
     const classes = useStyles();
 
     const setPage = (pageNo) => {
+      // when setting the page, set the page number then re-quer 
       props.setPage(pageNo);
       props.query();
     }
@@ -54,13 +61,15 @@ export function ResultsPage(props){
                  </CardContent>
                </Card>
              </Grid>
-           {!props.loading ? <Grid item xs={12} className={classes.results}>
-                {props.results.map(result => {
-                        return <Result className="coveo-results" key={result.uniqueId} result={result}/>
-                })}
-            </Grid> :
+           {
+           !props.loading ? // if !loading then display the results
+            <Grid item xs={12} className={classes.results}>
+                  {props.results.map(result => {
+                          return <Result className="coveo-results" key={result.uniqueId} result={result}/>
+                  })}
+              </Grid> : // else display loading symbol
             <div style={{width: "100%", display: "flex", justifyContent: "center", marginTop: "10em"}}><CircularProgress  color="secondary" /></div>
-              }
+            }
             </Grid>
         </div>       
 }

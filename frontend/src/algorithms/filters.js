@@ -1,6 +1,9 @@
 
 
 export const filters = {
+    /**
+     * Mapping of facetType to nice name
+     */
     "tpcategorie": "Catégories",
     "tppays": "Pays",
     "tpcouleur": "Couleur",

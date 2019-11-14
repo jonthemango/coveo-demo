@@ -35,6 +35,11 @@ const useStyles = makeStyles({
     }
   });
 
+/**
+ * When passed a result object, this component renders the static view of what
+ * that component looks like. Displaying fields like price, category, name, image, link to saq site, etc
+ * @param {result} props 
+ */
 export function Result(props){
     const classes = useStyles();
     return <Card className={classes.card}>

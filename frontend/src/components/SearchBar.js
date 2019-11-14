@@ -47,6 +47,12 @@ const useStyles = makeStyles(theme => ({
       }
   }));
 
+/**
+ * This component manages the top bar of the application.
+ * When a user enters some text into the search input, it modifies the state of searchBar
+ * when the users presses enter key, setSearchParams and setPage is called.
+ * @param {setPage, setSearchParams} props 
+ */
 export function SearchBar(props){
     const classes = useStyles();
 
@@ -67,11 +73,11 @@ export function SearchBar(props){
               placeholder="Search..."
               onChange={event => setSearchBar(event.target.value)}
               onKeyPress={event => {if (event.key === "Enter") {
-                props.setSearchParams(s => {
+                props.setSearchParams(s => { // notation that passes in current state, modifies it and clones the object (to create a new reference)
                   s.q = searchBar
                   return {...s};
                 })
-                props.setPage(0)
+                props.setPage(0) // set page to 0.
               }}}
               classes={{
                 root: classes.inputRoot,
